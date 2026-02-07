@@ -17,7 +17,7 @@ async def auto_reply(bot, message):
         await asyncio.sleep(60)
         try:
             await asyncio.sleep(10)
-            await reply.delete()
+            await reply.delete(10)
         except:
             pass
     except FloodWait as e:
