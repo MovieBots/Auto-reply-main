@@ -14,7 +14,7 @@ async def auto_reply(bot, message):
     try:
         reply = await message.reply_text('''Yₒᵤᵣ ₘₒᵥᵢₑ ᵢₛ ᵢₙ ₘy ₚᵣₒfᵢₗₑ ₚₗₑₐₛₑ Cₕₑcₖ ₘy Bᵢₒ
         ''', reply_to_message_id=message.id)
-        await asyncio.sleep(10)
+        await asyncio.sleep(30)
         try:
             await asyncio.sleep(10)
             await reply.delete(10)
