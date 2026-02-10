@@ -9,7 +9,7 @@ logger.setLevel(logging.INFO)
 
 lock = asyncio.Lock()
 
-@Client.on_message(filters.chat(FROM_GRP) & ~filters.bot)
+@Client.on_message(filters.chat(FROM_GRP) & filters.incoming & ~filters.bot)
 async def auto_reply(bot, message):
     try:
         reply = await message.reply_text('''Yₒᵤᵣ ₘₒᵥᵢₑ ᵢₛ ᵢₙ ₘy ₚᵣₒfᵢₗₑ ₚₗₑₐₛₑ Cₕₑcₖ ₘy Bᵢₒ
