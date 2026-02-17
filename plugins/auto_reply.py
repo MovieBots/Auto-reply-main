@@ -9,18 +9,10 @@ logger.setLevel(logging.INFO)
 
 lock = asyncio.Lock()
 
-@Client.on_message(filters.chat(FROM_GRP))
-async def auto_reply(client, message):
-
-    # ignore self messages
-    if message.from_user and message.from_user.is_self:
-        return
-
-    # ignore bots
-    if message.from_user and message.from_user.is_bot:
-        return
-
-    reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
+@Client.on_message(filters.chat(FROM_GRP) & filters.incoming & ~filters.bot)
+async def auto_reply(bot, message):
+    try:
+        reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
         ''', reply_to_message_id=message.id)
         await asyncio.sleep(10)
         try:
