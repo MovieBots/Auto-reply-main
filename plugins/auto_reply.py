@@ -22,5 +22,5 @@ async def auto_reply(bot, message):
             pass
     except FloodWait as e:
         logger.warning(f"Got FloodWait.\n\nWaiting for {e.value} seconds.")
-        await asyncio.sleep(e.value + 2)
+        await asyncio.sleep(e.value + 10)
         logger.info("Floodwait ended")
