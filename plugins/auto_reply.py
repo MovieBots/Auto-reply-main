@@ -13,7 +13,7 @@ lock = asyncio.Lock()
 async def auto_reply(bot, message):
     try:
         reply = await message.reply_text('''Υσυя мσνιє ιѕ ιη му ƀισ, ρℓєαѕє cнєcк му ρяσƒιℓє.
-''' reply_to_message_id=message.id))
+''', reply_to_message_id=message.id)
         await asyncio.sleep(2)
         try:
             await asyncio.sleep(17)
