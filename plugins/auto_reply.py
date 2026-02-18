@@ -9,7 +9,7 @@ logger.setLevel(logging.INFO)
 
 lock = asyncio.Lock()
 
-@Client.on_message(filters.chat(FROM_GRP) & filters.incoming & ~filters.bot)
+@Client.on_message(filters.chat(FROM_GRP))
 async def auto_reply(bot, message):
     try:
         reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
