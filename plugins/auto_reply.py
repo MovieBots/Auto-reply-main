@@ -4,29 +4,24 @@ from pyrogram.errors import FloodWait
 from vars import FROM_GRP
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(name)
 logger.setLevel(logging.INFO)
 
 lock = asyncio.Lock()
 
-@Client.on_message(filters.chat(FROM_GRP) & ~filters.bot)
+@Client.on_message(filters.chat(FROM_GRP) & filters.incoming & ~filters.bot)
 async def auto_reply(bot, message):
-    async with lock:
-        try:
-            reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
-
-
-''', reply_to_message_id=message.id)
-
-            await asyncio.sleep(2)
-        except FloodWait as e:
-            logger.warning(f"Got FloodWait.\n\nWaiting for {e.value} seconds.")
-            await asyncio.sleep(e.value + 2)
-            logger.info("Floodwait ended")
-
     try:
+        reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
+        ''', reply_to_message_id=message.id)
         await asyncio.sleep(10)
-        await reply.delete()
-    except:
-        pass
+        try:
+            await asyncio.sleep(10)
+            await reply.delete(10)
+        except:
+            pass
+    except FloodWait as e:
+        logger.warning(f"Got FloodWait.\n\nWaiting for {e.value} seconds.")
+        await asyncio.sleep(e.value + 2)
+        logger.info("Floodwait ended")
             
