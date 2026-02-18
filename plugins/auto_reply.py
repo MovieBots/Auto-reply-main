@@ -11,16 +11,22 @@ lock = asyncio.Lock()
 
 @Client.on_message(filters.chat(FROM_GRP) & ~filters.bot)
 async def auto_reply(bot, message):
-    try:
-        reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
-''', reply_to_message_id=message.id)
-        await asyncio.sleep(2)
+    async with lock:
         try:
-            await asyncio.sleep(10)
-            await reply.delete()
-        except:
-            pass
-    except FloodWait as e:
-        logger.warning(f"Got FloodWait.\n\nWaiting for {e.value} seconds.")
-        await asyncio.sleep(e.value + 2)
-        logger.info("Floodwait ended")
+            reply = await message.reply_text('''Yₒᵤᵣ ₘₒᵥᵢₑ ᵢₛ ᵢₙ ₘy ₚᵣₒfᵢₗₑ ₚₗₑₐₛₑ Cₕₑcₖ ₘy Bᵢₒ
+
+
+''', reply_to_message_id=message.id)
+
+            await asyncio.sleep(2)
+        except FloodWait as e:
+            logger.warning(f"Got FloodWait.\n\nWaiting for {e.value} seconds.")
+            await asyncio.sleep(e.value + 2)
+            logger.info("Floodwait ended")
+
+    try:
+        await asyncio.sleep(10)
+        await reply.delete()
+    except:
+        pass
+            
