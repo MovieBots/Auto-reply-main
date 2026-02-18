@@ -11,8 +11,7 @@ lock = asyncio.Lock()
 
 @Client.on_message(filters.chat(FROM_GRP))
 async def auto_reply(bot, message):
-    async with lock:
-        try:
+    try:
         reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
         ''', reply_to_message_id=message.id)
         await asyncio.sleep(10)
