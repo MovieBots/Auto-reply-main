@@ -12,11 +12,11 @@ lock = asyncio.Lock()
 @Client.on_message(filters.chat(FROM_GRP) & ~filters.bot)
 async def auto_reply(bot, message):
     try:
-        reply = await message.reply_text('''Υσυя мσνιє ιѕ ιη му ƀισ, ρℓєαѕє cнєcк му ρяσƒιℓє.
+        reply = await message.reply_text('''ʏօʊʀ ʍօʋɨɛ ɨռ ʍʏ քʀօʄɨʟɛ քʟɛǟֆɛ ƈɦɛƈӄ
 ''', reply_to_message_id=message.id)
         await asyncio.sleep(2)
         try:
-            await asyncio.sleep(17)
+            await asyncio.sleep(10)
             await reply.delete()
         except:
             pass
